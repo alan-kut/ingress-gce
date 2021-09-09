@@ -21,6 +21,7 @@ import (
 
 	v1 "k8s.io/api/networking/v1"
 	"k8s.io/apimachinery/pkg/types"
+	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/ingress-gce/pkg/annotations"
 	backendconfigv1 "k8s.io/ingress-gce/pkg/apis/backendconfig/v1"
 	"k8s.io/ingress-gce/pkg/utils/namer"
@@ -44,8 +45,9 @@ type ServicePort struct {
 	NodePort int64
 	// Numerical port of the Service, retrieved from the Service
 	Port           int32
+	PortName       string
 	Protocol       annotations.AppProtocol
-	TargetPort     string
+	TargetPort     intstr.IntOrString
 	NEGEnabled     bool
 	VMIPNEGEnabled bool
 	L7ILBEnabled   bool
